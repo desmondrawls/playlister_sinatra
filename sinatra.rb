@@ -28,21 +28,16 @@ module PlaylisterSite
       @song = Song.new
       @song.name = @song_name
 
-      @genre = Genre.all.select{|genre| genre.name == @genre_name}.first
-      if @genre
-          @song.genre = @genre
-      else
-          @genre = Genre.new
-          @genre.name = @genre_name
-          @song.genre = @genre
-      end
+      @genre = Genre.all.select{|genre| genre.name == @genre_name}.first || Genre.new.tap{|g| g.name = @genre_name}
 
-      @artist = Artist.new
-      @artist.name = @artist_name
+      @song.genre = @genre
+
+      @artist = Artist.all.select{|artist| artist.name == @artist_name}.first || Artist.new.tap{|a| a.name = @artist_name}
       @artist.add_song(@song)
-
+      
+      @song.artist = @artist
       @artists = Artist.all
-      # debugger
+      debugger
       erb :index_template
     end
 
@@ -52,7 +47,7 @@ module PlaylisterSite
     end
 
     get '/artists/:last_name' do
-      # debugger
+      debugger
       @artist = Artist.find_by_last_name(params[:last_name]).first
       erb :artist_template
     end
