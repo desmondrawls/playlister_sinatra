@@ -1,8 +1,6 @@
 require 'sinatra/base'
 require_relative 'models/parser'
 require 'youtube_it'
-require 'debugger'
-
 
 module PlaylisterSite
   class App < Sinatra::Base
