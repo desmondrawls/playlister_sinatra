@@ -1,6 +1,9 @@
 require 'sinatra/base'
 require_relative 'models/parser'
 require 'youtube_it'
+require './models/artist'
+require './models/song'
+require './models/genre'
 
 
 module PlaylisterSite
@@ -8,6 +11,7 @@ module PlaylisterSite
     def self.parse
       if Artist.all == []
         Parse.new.parse
+      end
     end
     parse
 
@@ -23,17 +27,18 @@ module PlaylisterSite
       @song = Song.new
       @song.name = @song_name
 
-      @genre = Genre.all.select{|genre| genre.name == @genre_name}.first || Genre.new.tap{|g| g.name = @genre_name}
+      @genre = Genre.all.select{|genre| genre.name == @genre_name}.first || 
+        Genre.new.tap{|g| g.name = @genre_name}
 
       @song.genre = @genre
 
-      @artist = Artist.all.select{|artist| artist.name == @artist_name}.first || Artist.new.tap{|a| a.name = @artist_name}
+      @artist = Artist.all.select{|artist| artist.name == @artist_name}.first || 
+        Artist.new.tap{|a| a.name = @artist_name}
       @artist.add_song(@song)
       
       @song.artist = @artist
       @artists = Artist.all
-      debugger
-      erb :index_template
+      erb :artist_template
     end
 
     get '/' do
@@ -42,7 +47,6 @@ module PlaylisterSite
     end
 
     get '/artists/:last_name' do
-      debugger
       @artist = Artist.find_by_last_name(params[:last_name]).first
       erb :artist_template
     end

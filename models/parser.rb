@@ -1,7 +1,3 @@
-require_relative 'artist'
-require_relative 'song'
-require_relative 'genre'
-
 # puts Song.all
 
 class Parse
