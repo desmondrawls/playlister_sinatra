@@ -1,15 +1,12 @@
 require 'sinatra/base'
 require_relative 'models/parser'
 require 'youtube_it'
+require 'debugger'
 
 module PlaylisterSite
   class App < Sinatra::Base
     def self.parse
-      if Artist.all != []
-        Artist.reset_artists
-        Genre.reset_genres
-        Song.reset_songs
-      end
+      if Artist.all == []
         Parse.new.parse
     end
     parse
