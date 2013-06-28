@@ -1,0 +1,10 @@
+<h1>Songs Library</h1>
+
+<h3><a href="<%="/songs/add"%>">Add a Song</a></h3>
+
+
+<ol>
+  <% @songs.each do |song| %>
+    <li><a href="<%= "/songs/#{song.name.split.last.downcase}/#{song.youtube_index.to_i}" %>"><%= song.name %></a></li>
+  <% end %>
+</ol>

@@ -5,5 +5,7 @@ Artist: <a href="<%="../artists/#{@song.artist.name.split.last.downcase}"%>"><%=
 Genre: <a href="<%="../genres/#{@song.genre.name.downcase}"%>"><%=@song.genre.name%></a>
 <br>
 <a href="<%="/"%>">Home</a>
+<br>
+<br>
 
-<%=@video_html%>
+<iframe src="<%="http://www.youtube.com/embed/#{@id}"%>" width=640 height=480 frameborder=0></iframe>

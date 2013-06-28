@@ -1,0 +1,10 @@
+<h1>Genres Library</h1>
+
+<h3><a href="<%="/songs/add"%>">Add a Song</a></h3>
+
+
+<ol>
+  <% @genres.each do |genre| %>
+    <li><a href="<%= "/genres/#{genre.name.split.last.downcase}" %>"><%= genre.name %></a></li>
+  <% end %>
+</ol>

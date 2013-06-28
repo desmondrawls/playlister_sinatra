@@ -1,0 +1,9 @@
+<a href="<%="/songs/#{@song.name.split.join.downcase}/confirm/#{@youtube_index.to_i}"%>">Choose This Video</a>
+<br><br>
+
+<a href="<%="/songs/#{@song.name.split.join.downcase}/video_picker/#{@youtube_index.to_i - 1}"%>">Last Video</a>
+<a href="<%="/songs/#{@song.name.split.join.downcase}/video_picker/#{@youtube_index.to_i + 1}"%>">Next Video</a>
+
+<br>
+
+<iframe src="<%="http://www.youtube.com/embed/#{@id}"%>" width=640 height=480 frameborder=0></iframe>
